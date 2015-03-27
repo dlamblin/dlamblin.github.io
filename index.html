@@ -144,15 +144,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script>
       $(document).ready(function() {
-        function navbarUpdate() {
+        $(window).on('hashchange', function() {
           $('#navbar .active').removeClass('active');
           var href = document.location.hash;
           if (href == "") {
             href = "#";
           }
           $('#navbar a[href="' + href + '"]').parent().addClass('active');
-        }
-        $('a').click(navbarUpdate);
+        });
       });
     </script>
   </body>
