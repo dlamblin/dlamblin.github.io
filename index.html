@@ -146,7 +146,11 @@
       $(document).ready(function() {
         function navbarUpdate() {
           $('#navbar .active').removeClass('active');
-          $('#navbar a[href="' + this.location.hash + '"]').parent().addClass('active');
+          var href = document.location.hash;
+          if (href == "") {
+            href = "#";
+          }
+          $('#navbar a[href="' + href + '"]').parent().addClass('active');
         }
         $('a').click(navbarUpdate);
       });
