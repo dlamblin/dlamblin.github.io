@@ -1,159 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>dlamblin on Github pages</title>
 
-    <!-- Bootstrap -->
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-    
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>dlamblin on Github pages</title>
+
+  <!-- Bootstrap -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
+  <style>
+    .red {color:red;}
+    .goo_blue {color:#4285f4; font-family: "catull", serif;}
+    .goo_red {color:#ea4335;}
+    .goo_yellow {color:#f9ab00;}
+    .goo_green {color:#34a853;}
+    /* cou color 2 is from the console log style, color 1 is from the wikimedia svg
+       https://upload.wikimedia.org/wikipedia/commons/f/ff/Coupang_logo.svg */
+    .cou_brown {
+      color: #894f24;
+      color:#560000; 
+       font-weight: bold;
+      }
+    .cou_red {
+      color: #e94b22;
+      color:#d83128; 
+    }
+    .cou_yellow {
+      color: #fac000;
+      color:#ea991b; 
+    }
+    .cou_green {
+      color: #80bc27;
+      color:#93ba2f; 
+    }
+    .cou_blue {
+      color: #3dacdc;
+      color:#4da4e0; 
+    }
+    .hide {
+      display: none;
+    }
+  </style>
+  <style>
+    @font-face {
+      font-family: catull;
+      src: url(https://use.typekit.net/af/f7d12b/0000000000000000000135a1/27/l?subset_id=1&fvd=n4&v=3) format("woff2"), url(https://use.typekit.net/af/f7d12b/0000000000000000000135a1/27/d?subset_id=1&fvd=n4&v=3) format("woff"), url(https://use.typekit.net/af/f7d12b/0000000000000000000135a1/27/a?subset_id=1&fvd=n4&v=3) format("opentype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: auto;
+    }
+  </style>
+</head>
 
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">dlamblin on github</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#stalk" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Stalk<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="https://plus.google.com/+DanielLamblin/" target="_blank">Google+</a></li>
-                <li><a href="https://twitter.com/dlamblin" target="_blank">Twitter</a></li>
-                <li><a href="https://www.linkedin.com/in/daniellamblin/en" target="_blank">Linkedin</a></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Related</li>
-                <li><a href="https://github.com/dlamblin" target="_blank">Wait a minute...</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+<body>
 
-    <!-- Begin page content -->
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <div class="page-header">
-          <h1>
-            <img class="img-circle"
-            width="230" height="230"
-            src="https://avatars3.githubusercontent.com/u/4128491?v=3&amp;s=460"
-            alt="dlamblin's face"/>
-            dlamblin on github
-          </h1>
-        </div>
-        <p class="lead">It's as exciting as it sounds.</p>
-        <p>So I will have to learn about how to make a <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> template so that I may use this github pages thing more appropriately.</p>
-      </div>
-    </div>
-
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h2>For</h2>
-          <p>For people who like to look at examples of layouts.</p>
-          <p><a class="btn btn-primary" href="http://getbootstrap.com/examples/jumbotron/" role="button">Worlds to greet &hellip;</a></p>
-        </div>
-        <div class="col-md-4">
-          <h2>Example</h2>
-          <p>Demonstrating a layout by example, for everyone else.</p>
-          <p><a class="btn btn-primary" href="http://getbootstrap.com/getting-started/#examples" role="button">Other examples &hellip;</a></p>
-       </div>
-        <div class="col-md-4">
-          <h2>Layout</h2>
-          <p>Laid out with help from Bootstrap. Also a project on Github. What is this mysterious hub?</p>
-          <p><a class="btn btn-primary" href="http://getbootstrap.com/" role="button">Bootstrap &hellip;</a></p>
-        </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">dlamblin on github</a>
       </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li class="dropdown">
+            <a href="#stalk" class="dropdown-toggle" data-toggle="dropdown" role="button"
+              aria-expanded="false">Stalk<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="https://plus.google.com/+DanielLamblin/" target="_blank">Google+</a></li>
+              <li><a href="https://twitter.com/dlamblin" target="_blank">Twitter</a></li>
+              <li><a href="https://www.linkedin.com/in/daniellamblin/en" target="_blank">Linkedin</a></li>
+              <li><a href="resume/dlamblinResume2022.html" target="_blank">Resume (lmod 2022)</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Related</li>
+              <li><a href="https://github.com/dlamblin" target="_blank">Wait a minute...</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
 
+  <!-- Begin page content -->
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron">
+    <div class="container">
+      <div class="page-header">
+        <h1>
+          <img class="img-circle" width="230" height="230"
+            src="https://avatars3.githubusercontent.com/u/4128491?v=3&amp;s=460" alt="dlamblin's face" />
+          dlamblin on github
+        </h1>
+      </div>
+      <p class="lead">It's as exciting as it sounds!</p>
+      <p>I'm a New York City based Software Engineer with a few decades of experience.
+        <br/>
+        If that sounds interesting, you might look at <a href="resume/dlamblinResume2022.html">my resume</a>.</p>
+      <p>I haven't yet dug into documentation for <a
+          href=https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll">Github's</a> <a
+          href="http://jekyllrb.com/" target="_blank">Jekyll</a> template support, so this is quite static. I hope
+        you're good with that.</p>
+    </div>
+  </div>
 
-      <div class="sidebar-module sidebar-module-inset">
-        <h4>Spurious Dates</h4>
-        <ol class="list-unstyled">
-          <li><a href="#">March 2015</a></li>
-          <li><a href="#">February 2015</a></li>
-          <li><a href="#">January 2015</a></li>
-          <li><a href="#">December 2014</a></li>
-          <li><a href="#">November 2014</a></li>
-          <li><a href="#">October 2014</a></li>
-          <li><a href="#">September 2014</a></li>
-          <li><a href="#">August 2014</a></li>
-          <li><a href="#">July 2014</a></li>
-          <li><a href="#">June 2014</a></li>
-          <li><a href="#">May 2014</a></li>
-          <li><a href="#">April 2014</a></li>
-        </ol>
+  <div class="container">
+    <div class="row row-cols-3">
+      <div class="col-md-4">
+        <h2 id="couhead"><span id="coutxt" class="cou_brown">cou<span class="cou_red">p</span><span class="cou_yellow">a</span><span class="cou_green">n</span><span class="cou_blue">g</span></span>
+          <img id="couimg" class="hide" src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Coupang_logo.svg" width="122em"/>
+        </h2>
+        <p>We could have recently met in the whirlwind between working in Seattle and Seoul.
+          I even got to visit Shanghai.</p>
+        <p><a class="btn btn-primary" href="resume/dlamblinResume2022.html" role="button">
+          More details &hellip;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2 class="goo_blue">G<span class="goo_red">o</span><span class="goo_yellow">o</span>g<span class="goo_green">l</span><span class="goo_red">e</span></h2>
+        <p>Google in Chelsea was a great place to meet people with neat ideas, some of them were even relevant to Google!
+          Personally, the Serif logo was the right logo.
+        </p>
+        <p><a class="btn btn-primary" href="resume/dlamblinResume2022.html" role="button">
+          One of the highlights &hellip;</a></p>
+      </div>
+      <div class="col-md-4">
+        <h2>Travelocity</h2>
+        <p>Maybe we met at Travelocity or IgoUgo. That gnome was a playful ambassador; I had the snorkling one on my desk.</p>
+        <p><a class="btn btn-primary" href="resume/dlamblinResume2022.html" role="button">
+          There was a golden gnome trophy too &hellip;</a></p>
       </div>
     </div>
-
-    <div class="jumbotron">
-      <div class="container">
-        <div class="page-header"><a name="about"></a>
-          <h1>About</h1>
-        </div>
-        <p class="lead">For now, glean what you can via stalking.</p>
-        <p>You probably noticed this site is really just a couple of links out to my linkedin, github, and Google+ profiles. This is because I do not spend a lot of time writing blog posts and such.</p>
+    <div class="row row-cols-3">
+      <div class="col-md-4">
+        <h2>EMC Corp</h2>
+        <p>You might know me from EMC Corporation. It was a long time ago, but we sure had a fun time with petabyte scale tape-library robots, didn't we?</p>
+        <p><a class="btn btn-primary" href="resume/dlamblinResume2022.html" role="button">
+          More &hellip;</a></p>
       </div>
     </div>
+  </div>
 
-    <div class="jumbotron">
-      <div class="container">
-        <div class="page-header"><a name="contact"></a>
-          <h1>Contact</h1>
-        </div>
-        <p class="lead">If I said "at gmail" would that mean something to you?</p>
+  <div class="jumbotron">
+    <div class="container">
+      <div class="page-header"><a name="about"></a>
+        <h1>About</h1>
       </div>
+      <p class="lead">For now, glean what you can via stalking.</p>
+      <p>You probably noticed this site is really just a couple of links out to my linkedin, resume, github, and Google+
+        profiles. This is because I do not spend a lot of time writing blog posts and such.
+        To explain, G+ was alive and well when I started this.</p>
+      <p>As noted above, I'm a NYC SW Eng with decades of experience.
+        I have a family here (🇺🇸) and extended family in Switzerland (🇨🇭), France (🇫🇷), Canada (🇨🇦), and Korea (🇰🇷).
+        I grew up in Dubai (🇦🇪).</p>
     </div>
+  </div>
 
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">I'm certain I'll have something to put in a footer someday.</p>
+  <div class="jumbotron">
+    <div class="container">
+      <div class="page-header"><a name="contact"></a>
+        <h1>Contact</h1>
       </div>
-    </footer>
+      <p class="lead">If I said "at gmail" would that mean something to you?</p>
+      <p>Actually there's a fun way to get a link to my email on
+        <a href="resume/dlamblinResume2022.html">my resume</a>.
+        You'll need to click after <tt class="red">m:</tt> twice.</p>
+    </div>
+  </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script>
-      $(document).ready(function() {
-        $(window).on('hashchange', function() {
-          $('#navbar .active').removeClass('active');
-          var href = document.location.hash;
-          if (href == "") {
-            href = "#";
-          }
-          $('#navbar a[href="' + href + '"]').parent().addClass('active');
-        });
+  <footer class="footer">
+    <div class="container">
+      <p class="text-muted">I'm certain I'll have something to put in a footer someday.</p>
+    </div>
+  </footer>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(window).on('hashchange', function () {
+        $('#navbar .active').removeClass('active');
+        var href = document.location.hash;
+        if (href == "") {
+          href = "#";
+        }
+        $('#navbar a[href="' + href + '"]').parent().addClass('active');
       });
-    </script>
-  </body>
+      $('#couhead').on('mouseover', function () {
+        $('#couimg').removeClass('hide');
+        $('#coutxt').addClass('hide');
+      });
+      $('#couhead').on('mouseout', function () {
+        $('#couimg').addClass('hide');
+        $('#coutxt').removeClass('hide');
+      });
+    });
+  </script>
+</body>
 </html>

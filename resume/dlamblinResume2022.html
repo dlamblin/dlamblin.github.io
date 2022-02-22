@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+<!--
+    Notes: Prints to Legal in 1 page.
+    If printed to letter breaks after Travelocity.
+    Flexbox layout does not RELIABLY break printing between lines.
+    IE some lines appear half on each page sometimes.
+    Chrome DOES NOT RESPECT page-break-after: always.
+    Work around by adding 2 br tags before TVLY section.
+-->
+
+<head>
+    <title>Daniel Pascal Lamblin's Resume</title>
+    <style>
+        @import "cmun-bright.css";
+        @import "cmun-sans.css";
+        @import "cmun-serif.css";
+        @import "cmun-typewriter-light.css";
+
+        @media all {
+
+            body, h1, h2, h3, h4, h5, h6, dl, p, ul {
+                padding: 0;
+                margin: 0;
+                border: 0;
+            }
+
+            body {
+                font-family: "Computer Modern Bright", sans-serif;
+            }
+
+            .email {
+                font-family: "Computer Modern Typewriter Light", monospace;
+            }
+
+            .cmu-bright {
+                font-family: "Computer Modern Bright", sans-serif;
+            }
+
+            .cmu-sans {
+                font-family: "Computer Modern Sans", sans-serif;
+            }
+
+            .cmu-serif {
+                font-family: "Computer Modern Serif", serif;
+            }
+
+            .cmu-typewriter-light {
+                font-family: "Computer Modern Typewriter Light", monospace;
+            }
+
+            header {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+            }
+
+            address {
+                display: inline;
+                font-style: normal;
+                font-weight: bold;
+                color: dimgray;
+            }
+
+            header address {
+                display: block;
+            }
+
+            header hgroup {
+                flex: 4 1 auto;
+            }
+
+            header aside {
+                display: flex;
+                flex-flow: column;
+                align-items: flex-start;
+                flex: 0 1 auto;
+                padding-right: 2em;
+            }
+
+            header dl {
+                display: flex;
+                flex-flow: row nowrap;
+            }
+
+            header dt {
+                flex: 0 0 2em;
+                padding: 0.1em 0;
+                text-align: right;
+                color: red;
+            }
+
+            header dt::after {
+                content: ":";
+            }
+
+            header dd {
+                margin: 0;
+                padding: 0.1em 0;
+            }
+
+            a,
+            a:link,
+            a:visited {
+                text-decoration: none;
+                color: inherit;
+            }
+
+            a:hover,
+            a:active {
+                text-decoration: underline;
+                color: blue;
+            }
+
+            .hide {
+                display: none;
+            }
+
+            section#experience b:after {
+                /* unbolded comma after bolded company name */
+                content: ',';
+                font-weight: normal;
+            }
+
+            main>section {
+                /* pull out section h1 to left and indent section content */
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: baseline;
+                padding-bottom: 1em;
+            }
+
+            main>section>h1 {
+                /* section titles on left 6em */
+                flex: 0 0 6em;
+                color: dimgray;
+            }
+
+            main>section>div {
+                /* section content after 6em */
+                flex: 1 0 1em;
+                width: calc(100%-6em);
+            }
+
+            /* Attempt non-flexbox alternative for safer printing;
+               but it won't baseline align section headings, so, not good enough. */
+            /* main>section {
+                padding-bottom: 1em;
+            }
+
+            main>section>h1 {
+                position: absolute;
+                color: dimgray;
+            }
+
+            main>section>div {
+                position: relative;
+                margin-left: 6em;
+                width: calc(100%-6em);
+            } */
+
+            main>section>div>section {
+                /* spread section content positions or schools to full content width */
+                width: 100%;
+            }
+
+            main>section>div>section>div {
+                /* a flex row in section content, position or school titles */
+                width: 100%;
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: baseline;
+                justify-content: space-between;
+            }
+
+            ul {
+                /* position pointed notes */
+                list-style: none;
+                padding: 0;
+            }
+
+            ul li:before {
+                /* position pointed notes bulletted in gutter */
+                content: '▸';
+                margin: 0 0 0 -0.8em;
+            }
+
+            section#experience section.transition ul {
+                /* how to space the end of a position transition within a company */
+                margin-bottom: 0.5em;
+            }
+
+            section#experience section.transition+section b {
+                /* won't display a company name after prior position is a transition of that company */
+                display: none;
+            }
+        }
+
+        @media screen {
+            body {
+                height: 100vh;
+            }
+
+            header hgroup h1 {
+                color: royalblue;
+                font-style: italic;
+                font-size: 275%;
+                text-shadow: 0.2EM 0.2em 0.5em midnightblue;
+                -webkit-text-stroke: 0.5pt black;
+            }
+
+            article {
+                padding: 1em 1em 0 1em;
+            }
+
+            section#experience ul {
+                margin-bottom: 1em;
+            }
+
+            footer {
+
+                background: grey;
+                color: black;
+                text-align: center;
+            }
+
+            footer select {
+                font-family: inherit;
+                font-size: inherit;
+                background-color: grey;
+                color: black;
+            }
+        }
+
+        @media print {
+            @page {
+                margin: 1cm 2cm 1cm 1cm;
+            }
+
+            header dt {
+                color: black;
+                font-weight: bold;
+            }
+
+            body {
+                font: normal normal 10pt "Computer Modern Serif", serif;
+            }
+
+            #skills p {
+                display: inline;
+            }
+
+            div>section {
+                page-break-inside: avoid;
+            }
+
+            div>section.pagebreak {
+                page-break-before: always;
+            }
+
+            div>section * {
+                page-break-inside: avoid;
+            }
+
+            section#experience ul {
+                margin-bottom: 0.5em;
+            }
+
+            footer {
+                display: none;
+            }
+
+            section>div {
+                text-align: justify;
+                text-justify: distribute;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <article>
+        <main>
+            <header>
+                <hgroup>
+                    <h1>Daniel Pascal Lamblin</h1>
+                    <address>Brooklyn NY U.S.A. & Remote</address>
+                </hgroup>
+                <div>&nbsp;</div>
+                <aside>
+                    <dl>
+                        <dt>m</dt>
+                        <dd class="email"><a id="email"
+                                href="mailto:%22Daniel P Lamblin%22%20%3Cdlamblin+resume2022%40gmail%2Ecom%3E"><span>Δλαμβλιν</span>θ<span>Γμαιλ</span>.κομ</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>t</dt>
+                        <dd><a href="tel:+16466443587">+1&nbsp;646&nbsp;644&nbsp;3587</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>gh</dt>
+                        <dd><a href="https://dlamblin.github.io">dlamblin.github.io</a></dd>
+                    </dl>
+                    <dl>
+                        <dt>in</dt>
+                        <dd><a href="https://linkedin.com/in/daniellamblin">linkedin.com/in/daniellamblin</a></dd>
+                    </dl>
+                </aside>
+            </header>
+            <section id="skills">
+                <h1>Skills</h1>
+                <div>
+                    <p>
+                        <i>JVM</i>:
+                        <span title="Used for almost all projects, JDK 8-17">Java</span>,
+                        <span title="Google's common Java libraries">Guava</span>,
+                        <span title="Google's Dependency Injection Framework; much better than Spring's">Guice</span>,
+                        <span
+                            title="Square & Google's Compile Time Dependency Injection Framework, better than Guice">Dagger</span>,
+                        <span
+                            title="A better Spring framework used for most Coupang web fronts, apis and microservices, but there's smaller choices">SpringBoot</span>,
+                        <span title="The underlying index library to Solr and Elastic Search etc.">Lucene</span>,
+                        <span
+                            title="Google Web Toolkit lets you write a JavaScript front end with Java with GRPC connections to the Java Backend">GWT</span>,
+                        <span title="Only with Spark; its neat but plain Java reads clearer">Scala</span> &
+                        <span title="Lightly used, good if you're stuck on JDK8">Kotlin</span>;
+                    </p>
+                    <p>
+                        <i><span
+                                title="I wouldn't want to use any of the following in a non-Unix environment">Unix</span></i>:
+                        <span
+                            title="Largely used for Airflow jobs, and various utilities and CLIs; v3 only please">Python</span>,
+                        <span
+                            title="Go has one of the fastest compile test run cycles available, and excellent standard libraries">Go</span>,
+                        <span
+                            title="Long ago I helped maintain IPC and RPC processes in C for a system by EMC. C++ never worked out for me.">C</span>,
+                        <span
+                            title="Much as I loved Perl5, and think 6 is neat, I'll recommend Python wherever appropriate">Perl</span>
+                        &
+                        <span title="Note to self: learn more about zsh">Bash</span>;
+                    </p>
+                    <p>
+                        <i>C#</i>:
+                        <span title="Migrating ASP.Net 1 to ASP.Net 2 ; yes forever ago">ASP.Net</span>;
+                    </p>
+                    <p>
+                        <i>Data</i>:
+                        <span
+                            title="Got into the community and using, deploying, admining, fixing, maintaining and teaching it">Airflow</span>,
+                        <span
+                            title="MySQL was the default of most employers. I heard Postgres is good. I wouldn't admin either much.">MySQL</span>,
+                        <span
+                            title="For roughly heterogeneous data formats, on large S3 stores, it works, but shows its age. Hue makes it better">Hive</span>,
+                        <span title="Snappier than Hive, works well with notebooks like Zeppelin">Presto</span>,
+                        <span
+                            title="Spark could kind of replace a lot of other Apache Data tools. A reason to learn Scala">Spark</span>,
+                        <span
+                            title="A Google Document store with Protobuf schemas. More robust than ElasticSearch or MongoDB, but not really a first choice even if you're IN Google">Megastore</span>,
+                        <span
+                            title="The Google internal spark-like library, open-sourced as Beam with execution on non-Google engines available now.">Beam/Cloud
+                            Dataflow</span>;
+                    </p>
+                    <p>
+                        <i>Web</i>:
+                        <span title="I Mostly used it for Vue.js v3 frontend development">NodeJS</span>,
+                        <span title="Quite a flexible JavaScript frontend framework">Vue.js</span>,
+                        <span title="IANA Designer, but web projects don't get done without these">HTML, CSS &
+                            JavaScript</span>;
+                    </p>
+                    <p>
+                        <i>AWS</i>:
+                        <span title="Application Load Balancers generally replace ELBs">ALB</span>,
+                        <span
+                            title="Auto Scaling Group configuration is harder in AWS than it needs to be, but it can be indispensable">ASG</span>,
+                        <span
+                            title="Understanding Elastic Block Storage (network attached disks) options can be critical to the type of application being deployed">EBS</span>,
+                        <span
+                            title="Elastic Compute is the basic VM of the AWS Cloud. You might want a higher level service in a few cases, but many cases work with this">EC2</span>,
+                        <span title="Elastic File Service is NFS essentially.">EFS</span>,
+                        <span
+                            title="Elastic Kubernetes as a Service is probably a fine way to get K8s running, now you have more problems :P">EKS</span>,
+                        <span
+                            title="Elastic Map Reduce is an okay way to run Hive and Spark and other Apache Hadoop-ish things. But... What about Spark on K8s? or AWS Glue and its services?">EMR</span>,
+                        <span
+                            title="AWS's cloud functions as a service. It's useful but within limits given the possible costs">Lambda</span>,
+                        <span title="Relational Database Services are your go to DB server option on AWS">RDS</span>,
+                        <span
+                            title="It's not the cleanest format, but with a Hive Serde you can learn a lot about cloud access patterns internally">CloudTrail</span>,
+                        <span
+                            title="Monitoring and alerts; necessary for other services like ASGs, but you'll want your own alerting and monitoring tools in addition, like Prometheus">CloudWatch</span>,
+                        <span
+                            title="If Terraform, ansible or puppet isn't going to work for you, AWS has a Infra as almost-code solution for you">CloudFormation</span>,
+                        <span
+                            title="The Simple Storage Service underlies a lot of AWS, and almost need not be mentioned">S3</span>
+                        &hellip;;
+                    </p>
+                    <p>
+                        <span title="Working in Sprints has been de rigeur for over a decade now">Agile</span> &
+                        <span
+                            title="Test Driven Development is fantastic, if you've got your CI CD setup with fully parallelized testing">TDD</span>
+                    </p>
+                </div>
+            </section>
+            <section id="education">
+                <h1>Education</h1>
+                <div>
+                    <section>
+                        <div>
+                            <div>Andrew Ng's Stanford <a href="http://ml-class.org/">ML-Class.org</a>; <address>Online
+                                </address>– Became Coursera </div>
+                            <div><span class="month hide">Oct </span>2011–<span class="month hide">Dec </span>2011</div>
+                        </div>
+                        <span class="hide">Review Questions: 76 out of a maximum of 80</span>
+                        <span class="hide">Programming Exercises: 800 out of a maximum of 800</span>
+                    </section>
+                    <section>
+                        <div>
+                            <div>Columbia University; <address>New York, NY </address>– Non-Degree Semester</div>
+                            <div><span class="month hide">Sep </span>2007–<span class="month hide">Dec </span>2007</div>
+                        </div>
+                        <span class="hide">Introduction to Machine Learning, </span>
+                        <span class="hide">Video Game Design and Technology</span>
+                    </section>
+                    <section>
+                        <div>
+                            <div>Worcester Polytechnic Institute; <address>Worcester, MA </address>– BS Computer Science
+                            </div>
+                            <div><span class="month hide">Sep </span>1995–<span class="month hide">May </span>1999</div>
+                        </div>
+                    </section>
+                </div>
+            </section>
+            <section id="experience">
+                <h1>Experience<span class="selected"> (Selected)</span></h1>
+                <div>
+                    <section class="position transition">
+                        <div>
+                            <div><b>Coupang</b> <i>Senior Backend Software Engineer</i> Clickstream Web Logging</div>
+                            <div>
+                                <address>Seattle</address> <span class="month hide">Nov </span>2020–Present
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Developed Customer Experience Analytics Platform tool for self-service funnel, journey
+                                and trend analysis of web logging data</li>
+                            <li>MVP for CXAP tool: Stood up the web front on Vue.js 2 for customers of Business
+                                Analytics team</li>
+                            <li>Designed the scheduling of CXAP jobs</li>
+                            <li>Delivered Journey and Trend analysis for backend of CXAP with Spark and Scala</li>
+                            <li>Mentored intern project to port and extend UI on Vue.js 3 & converted to hire</li>
+                            <li>Assisted Retail Delivery team's mission-critical multi-AZ expansion projects</li>
+                        </ul>
+                    </section>
+                    <section class="position transition">
+                        <div>
+                            <div><b>Coupang</b> <i>Senior Data Engineer</i> Data Platform Tools and Infra</div>
+                            <div>
+                                <address>Seattle</address> <span class="month hide">Jul </span>2019–<span
+                                    class="month hide">Nov </span>2020
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Migrated enterprise data warehouse's ~4000 Airflow ETL jobs from Airflow 1.8 to 1.10+,
+                                with custom semi-automated tooling.</li>
+                            <li>Right-size teams' infrastructure resource usage by monitoring for efficient use of EMR
+                                and Spark jobs</li>
+                            <li>Split Airflow into multiple deployments and onboard users to latest versions</li>
+                            <li>On call rotation as in Seoul.
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="position transition">
+                        <div>
+                            <div><b>Coupang</b> <i>Big Data Engineer</i> Big Data Platform</div>
+                            <div>
+                                <address>Seoul</address> <span class="month hide">Aug </span>2017–<span
+                                    class="month hide">Jul </span>2019
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Onboard teams (edw, growth, pricing, catalog, search, retail etc.) into airflow;
+                                configure and maintain EMR clusters for teams' jobs</li>
+                            <li>Develop Data Platform Portal tool with Cluster start-stop API, management, and Data
+                                Discovery</li>
+                            <li>Scale out Airflow to ~6000 dags with multiple deployments</li>
+                            <li>On call rotation for Airflow, Presto, Hive, Hue, Zeppelin, Spark, HDFS, Zookeeper etc.
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="position">
+                        <div>
+                            <div><b>Coupang</b> <i>Data Engineer</i> Data Platform</div>
+                            <div>
+                                <address>Seattle</address> <span class="month hide">Jul </span>2016–<span
+                                    class="month hide">Aug </span>2017
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Cloud migration. Lift and Shift on-prem IBM Netezza and HDFS Hive to EMR Hive on S3</li>
+                            <li>Update ETL into Airflow from Oozie and Talend</li>
+                            <li>Monitor data readiness with oncall rotations</li>
+                        </ul>
+                    </section>
+                    <section class="position">
+                        <div>
+                            <div><b>Insight Data Science</b> <i>Data Engineering Fellow</i></div>
+                            <div>
+                                <address>New York City</address> <span class="month hide">Sep </span>2015–<span
+                                    class="month hide">Jan </span>2016
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Realtime and batch processing on NYC MTA's GTFS stream with Kafka, Spark, HDFS, HBase,
+                                S3</li>
+                            <li>Generated user data in large scale for testing aim of notifying users of train delays
+                            </li>
+                            <li>Cluster on AWS EC2; project information and presentation at
+                                <a
+                                    href="http://dlamblin.github.io/mta-delay-monitoring">dlamblin.github.io/mta-delay-monitoring</a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section class="position hide">
+                        <div>
+                            <div><b>Paragon Cloud Security</b> <i>Software Engineer</i></div>
+                            <div>
+                                <address>New York City</address> <span class="month hide">Mar </span>2015–<span
+                                    class="month hide">Aug </span>2015
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Paragon was interested in cloud storage of security video and we got over 100 cameras
+                                storing footage on Azure.</li>
+                            <li>The Axis Camera's had embedded linux and a cross-compilation chain for edge video
+                                processing apps which we attempted to add scene/object recognition to. </li>
+                        </ul>
+                    </section>
+                    <section class="position hide">
+                        <div>
+                            <div><b>Spectre App</b> <i>Founding Software Engineer</i></div>
+                            <div>
+                                <address>New York City</address> <span class="month hide">Nov </span>2014–<span
+                                    class="month hide">Mar </span>2015
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Rapid prototype a photo-journalism sourcing app for location specific calls for photos
+                                with photographer licensing & attribution</li>
+                        </ul>
+                    </section>
+                    <section class="position">
+                        <div>
+                            <div><b>Google</b> <i>Software Engineer</i></div>
+                            <div>
+                                <address>New York City</address> <span class="month hide">Jul </span>2010–<span
+                                    class="month hide">Nov </span>2014
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Ported legacy Studio product, a rich advertisement authoring and QA web-app, to Google’s
+                                Web Toolkit front-end with a stubby rpc backend and megastore datastore</li>
+                            <li>Developed a dashboard to track component usage data of ads by comparing html5 vs. flash
+                                authoring, common formats, layouts, and generated impressions. Utilized cross-team apis
+                                and
+                                internal versions of GFS, Cloud Dataflow and Drill</li>
+                            <li>Implemented critical preview features for monitoring ad unit interactions and compliance
+                            </li>
+                            <li>Migrated user records and assets to support new multi-account users and unified asset
+                                library
+                                view</li>
+                            <li>Reduced reprocessing and conserved storage of assets by fingerprinting uploads, both on
+                                individual files and within archives</li>
+                        </ul>
+                    </section>
+                    <section class="position not-selected hide">
+                        <div>
+                            <div><b>Sigato Group</b> <i>Software Engineer</i></div>
+                            <div>
+                                <address>Remote</address> <span class="month hide">Aug </span>2009–<span
+                                    class="month hide">Jan </span>2010
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Engineered provider search functionality for New West Health with R-tree based search,
+                                maps, and
+                                directions, as a module for Drupal using PHP, MySQL, and Perl</li>
+                            <li>Integrated single sign-on to converge features from New West Health and partners</li>
+                        </ul>
+                    </section>
+                    <section class="position">
+                        <div>
+                            <div><b>Travelocity</b> <i>Senior Web Application Developer</i></div>
+                            <div>
+                                <address>New York City</address> <span class="month hide">Jul </span>2006–<span
+                                    class="month hide">Jan </span>2009
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Established features for IgoUgo.com using the ASP.NET 2.0 framework, C#, PrototypeJS
+                            </li>
+                            <li>Introduced a Lucene based index of content to offload db search as a wsdl service in
+                                Java and
+                                Spring with auto-completed suggestions for key geo-entities</li>
+                            <li>Boosted traffic ten fold through optimization of page structure, URLs and image file
+                                names</li>
+                        </ul>
+                    </section>
+                    <section class="position not-selected hide">
+                        <div>
+                            <div><b>Hairzone Inc</b> <i>Head Web Developer</i></div>
+                            <div>
+                                <address>Moonachie</address> <span class="month hide">Oct </span>2004–<span
+                                    class="month hide">Jul </span>2006
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Built and supported the multiple websites of four company brands with ASP</li>
+                        </ul>
+                    </section>
+                    <section class="position not-selected hide">
+                        <div>
+                            <div><b>Richmond Research Inc</b> <i>Programmer</i></div>
+                            <div>
+                                <address>New York City</address> <span class="month hide">Feb </span>2003–<span
+                                    class="month hide">Oct </span>2004
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Automated reporting and developed web products using Perl, PHP, Visual Basic and
+                                ActionScript
+                                for clients including Wall Street Journal and Priceline</li>
+                        </ul>
+                    </section>
+                    <section class="position not-selected hide">
+                        <div>
+                            <div><b>Mile NY</b> <i>Website Programmer</i></div>
+                            <div>
+                                <address>Fort Lee</address> <span class="month hide">Oct </span>2002–<span
+                                    class="month hide">Sep </span>2003
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Established MileNY's e-commerce site for using Perl, CGIs, and MySQL database</li>
+                        </ul>
+                    </section>
+                    <section class="position">
+                        <div>
+                            <div><b>EMC Corp</b> <i>Associate Software Engineer</i></div>
+                            <div>
+                                <address>Milford, MA</address> <span class="month hide">Jun </span>2000–<span
+                                    class="month hide">Oct </span>2001
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Extended EMC Data Manager Volume & Tape Library Manager's media duplication processes
+                                targeting
+                                Petabyte capable systems like Sony PetaSite with multiple robots and drives</li>
+                            <li>Improved and maintained EDM as a multi-process C based system with Sun RPC,
+                                threading, and IPC signals & pipes; Resolved deadlock by refactoring mutex hierarchy
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <br>
+            <p>
+                This page will print in grayscale using Donald Knuth's Computer Modern Serif font.
+            </p>
+            <p>
+                It is presented on screen with Knuth's
+                <select name="screenfont" id="selectscreenfont">
+                    <option value="cmu-bright" class="cmu-bright" selected>Computer Modern Bright</option>
+                    <option value="cmu-sans" class="cmu-sans">Computer Modern Sans</option>
+                    <option value="cmu-serif" class="cmu-serif">Computer Modern Serif</option>
+                    <option value="cmu-typewriter-light" class="cmu-typewriter-light">Computer Modern Typewriter Light
+                    </option>
+                </select>
+            </p>
+            <p>
+                Showing Education:
+                <input id="edu-months-option" type="checkbox">Months;
+                <input id="edu-locations-option" type="checkbox" checked>Locations;
+            </p>
+            <p>
+                Showing <select name="selected" id="select-length">
+                    <option value="selected" selected>Selected</option>
+                    <option value="complete">Complete</option>
+                </select> Experience:
+                <input id="exp-months-option" type="checkbox">Months;
+                <input id="exp-locations-option" type="checkbox" checked>Locations;
+            </p>
+            <p>Printing advice: Check the preview, has Chrome has loaded fonts? Click the email before printing.</p>
+            <br>
+        </footer>
+    </article>
+    <script>
+        var fontColors = {
+            "cmu-bright": "color:yellow;",
+            "cmu-sans": "color:white;",
+            "cmu-serif": "color:gray;",
+            "cmu-typewriter-light": "color:lime;",
+        }
+        var selectscreenfont = document.getElementById('selectscreenfont')
+        var body = document.getElementsByTagName('body')[0]
+        selectscreenfont.onchange = function (evt) {
+            var newFont = evt.srcElement.value
+            console.log(`%cChanging font to: ${newFont}`, fontColors[newFont])
+            body.className = newFont
+        }
+
+        var selectLength = document.getElementById('select-length')
+        var selectedElements = document.getElementsByClassName('selected')
+        var notSelectedElements = document.getElementsByClassName('not-selected')
+        selectLength.onchange = function (evt) {
+            var newLength = evt.srcElement.value
+            if ('selected' == newLength) {
+                console.log("%cShowing Selected Experience Only", "color:blue;")
+                for (let elem of selectedElements) {
+                    elem.classList.remove('hide')
+                }
+                for (let elem of notSelectedElements) {
+                    elem.classList.add('hide')
+                }
+            } else { // "complete"
+                console.log("%cShowing Complete Experience", "color:red;")
+                for (let elem of selectedElements) {
+                    elem.classList.add('hide')
+                }
+                for (let elem of notSelectedElements) {
+                    elem.classList.remove('hide')
+                }
+            }
+        }
+
+        // Generate an event handler that will show or hide elements for selected checkbox.
+        // Accepts HTMLElements, a string to log when showing, a string to log when hiding.
+        function getCheckboxShowHideHandler(elements, showing, hiding) {
+            return function (evt) {
+                var shown = evt.srcElement.checked
+                console.log("%c" + (shown ? showing : hiding), (shown ? "color:red;" : "color:blue;"))
+                for (let elem of elements) {
+                    if (shown) {
+                        elem.classList.remove('hide')
+                    } else {
+                        elem.classList.add('hide')
+                    }
+                }
+            }
+        }
+
+        var eduMonthsOption = document.getElementById('edu-months-option')
+        var eduMonthElements = document.getElementById('education').getElementsByClassName('month')
+        eduMonthsOption.onchange = getCheckboxShowHideHandler(eduMonthElements, "Showing education months", "Hiding education months")
+
+        var eduLocationsOption = document.getElementById('edu-locations-option')
+        var eduLocationElements = document.getElementById('education').getElementsByTagName('address')
+        eduLocationsOption.onchange = getCheckboxShowHideHandler(eduLocationElements, "Showing education locations", "Hiding education locations")
+
+        var expMonthsOption = document.getElementById('exp-months-option')
+        var expMonthElements = document.getElementById('experience').getElementsByClassName('month')
+        expMonthsOption.onchange = getCheckboxShowHideHandler(expMonthElements, "Showing experience months", "Hiding experience months")
+
+        var expLocationsOption = document.getElementById('exp-locations-option')
+        var expLocationElements = document.getElementById('experience').getElementsByTagName('address')
+        expLocationsOption.onchange = getCheckboxShowHideHandler(expLocationElements, "Showing experience locations", "Hiding experience locations")
+
+        var email = {
+            tag: document.getElementById('email'),
+            //str: ['xxxxxxxx', 'x', 'xxxxx', 'xxx', ''],
+            str: ['Δαλμλβνι', 'θ', 'Γαμλι', 'μκο', ''],
+            src: ['Δλαμβλιν', 'θ', 'Γμαιλ', 'κομ', ''],
+            trs: { 'α': 'a', 'β': 'b', 'κ': 'c', 'Δ': 'd', 'Γ': 'g', 'ι': 'i', 'λ': 'l', 'μ': 'm', 'ν': 'n', 'ο': 'o', 'θ': '@', '⋅': '.' },
+            ref: ['mailto:%22Daniel P Lamblin%22%20%3C', '+resume2022', '', '%2E', '%3E'],
+            sub: ['<span>', '</span>', '<span>', '</span>.', ''],
+            spd: 75, // milliseconds
+            fix: function () {
+                if (!('tar' in email)) {
+                    email.tar = []
+                    for (let s in email.src) {
+                        let t = ''
+                        for (let c in email.src[s]) {
+                            t += email.trs[email.src[s][c]]
+                        }
+                        email.tar.push(t)
+                    }
+                }
+            },
+            itr: function () {
+                let href = email.ref.map((k, i) => [k, email.str[i]]).flat().join('')
+                let html = email.sub.map((k, i) => [k, email.str[i]]).flat().join('')
+                email.tag.href = href
+                email.tag.innerHTML = html
+                if (email.str.every((val, index) => val === email.tar[index])) {
+                    return true
+                } else {
+                    for (let s in email.str) {
+                        let t = ''
+                        for (let c in email.str[s]) {
+                            if (email.str[s][c] === email.tar[s][c]) {
+                                t += email.str[s][c]
+                            } else {
+                                t += email.str[s][c].replace(/[a-z@Α-ω]/g, i =>
+                                    "bcdefghijklmnopqrstuvwxyz@ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρςστυφχψωa"[
+                                    "abcdefghijklmnopqrstuvwxyz@ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρςστυφχψω".indexOf(i)])
+                            }
+                        }
+                        email.str[s] = t
+                    }
+                    window.setTimeout(email.itr, email.spd)
+                }
+                return false
+            },
+        }
+        email.fix();
+        email.tag.onclick = email.itr
+    </script>
+</body>
+
+</html>

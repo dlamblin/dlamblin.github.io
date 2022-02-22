@@ -1,0 +1,33 @@
+@font-face {
+	font-family: 'Computer Modern Bright';
+	src: url('fonts/ComputerModern/Bright/cmunbmr.woff') format('woff'),
+		 url('fonts/ComputerModern/Bright/cmunbmr.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Computer Modern Bright';
+	src: url('fonts/ComputerModern/Bright/cmunbbx.woff') format('woff'),
+		 url('fonts/ComputerModern/Bright/cmunbbx.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Computer Modern Bright';
+	src: url('fonts/ComputerModern/Bright/cmunbmo.woff') format('woff'),
+		 url('fonts/ComputerModern/Bright/cmunbmo.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Computer Modern Bright';
+	src: url('fonts/ComputerModern/Bright/cmunbxo.woff') format('woff'),
+		 url('fonts/ComputerModern/Bright/cmunbxo.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+
